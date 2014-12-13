@@ -4,4 +4,5 @@ import datetime
 
 def index(request):
     dateToday = datetime.date.today()
-    return HttpResponse(dateToday.strftime('%m-%d-%Y'))
+    context = {'dateToday': dateToday}
+    return render(request, 'index.html', context)
