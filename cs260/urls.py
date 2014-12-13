@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^todolist/', include('todolist.urls', namespace="todolist")),
+    url(r'^$', include('todolist.urls', namespace="todolist")),
 )
