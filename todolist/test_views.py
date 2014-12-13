@@ -8,3 +8,4 @@ class TodoListView(TestCase):
         resp = self.client.get(reverse('todolist:index'))
         dateToday = datetime.date.today()    
         self.assertContains(resp, dateToday.strftime('%m-%d-%Y'))
+        self.assertTemplateUsed(resp, 'index.html')
