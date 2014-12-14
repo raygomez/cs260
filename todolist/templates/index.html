@@ -1,1 +1,6 @@
 {{ dateToday }}
+
+{% for todo in todos %}
+{{ todo.description }}
+{{ todo.isDone }}
+{% endfor %}

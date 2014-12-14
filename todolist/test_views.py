@@ -18,6 +18,7 @@ class TodoListView(TestCase):
         dateToday = datetime.date.today()    
 
         resp = self.client.get(reverse('todolist:index'))
+
         self.assertContains(resp, dateToday.strftime('%b %d, %Y'))
         self.assertContains(resp, 'todo list 1')
         self.assertContains(resp, 'False')
