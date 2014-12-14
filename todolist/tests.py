@@ -10,4 +10,4 @@ class TodoList(TestCase):
             dateAdded=datetime.date.today())
         self.assertEqual("todo list 1", todo.description)
         self.assertTrue(not(todo.isDone))
-        self.assertEqual(datetime.datetoday(), todo.dateAdded)
+        self.assertEqual(datetime.date.today(), todo.dateAdded)

@@ -1,4 +1,8 @@
 from django.db import models
 
+import datetime
+
 class ToDo(models.Model):
-    pass
+    description = models.CharField(max_length=200, default="")
+    isDone = models.BooleanField(default=False)
+    dateAdded = models.DateField(default=datetime.date.today())
