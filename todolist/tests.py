@@ -1,6 +1,8 @@
 from django.test import TestCase
 from todolist.models import ToDo
 
+import datetime
+
 class TodoList(TestCase):
 
     def test_create_instance_of_to_do(self):
