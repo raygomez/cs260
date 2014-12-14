@@ -1,6 +1,7 @@
 {{ dateToday }}
 
 {% for todo in todos %}
-{{ todo.description }}
-{{ todo.isDone }}
+<p>{{ todo.description }}</p>
+<p>{{ todo.isDone }}</p>
+<hr/>
 {% endfor %}
