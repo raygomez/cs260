@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <h2>{{ dateToday }}</h2>
 <hr/>
 {% for todo in todos %}
@@ -5,3 +9,5 @@
 <p>{{ todo.isDone }}</p>
 <hr/>
 {% endfor %}
+
+{% endblock %}
