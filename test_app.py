@@ -11,7 +11,6 @@ class CS260App(TestCase):
         self.client.login(username="user", password="user")
 
     def test_if_app_is_accessible_root(self):
-        
         resp = self.client.get('');
         self.assertEqual(200, resp.status_code)
     
