@@ -13,11 +13,9 @@ $.ajax({
         alert('error');
     }
 });
-{% load staticfiles %}
 </script>
-<script src="{% static "/js/jquery.js" %}"></script>
-<script src="static/js/jquery.js"}></script>
-
+{% load staticfiles %}
+<script src="{% static "js/jquery.js" %}"></script>
 </head>
 
 {% if user.is_authenticated %}
