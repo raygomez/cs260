@@ -6,12 +6,11 @@
 
 $(document).ready(function() {
     $(':checkbox').change(function(){
-    var id = $(this).attr("data");
-    var on = 'False';
-    if($(this).checked) on = 'True';
-     $.get('update', { pk: id, isOn: on }, function(data){
-            alert('hi');
-           });});
+        var id = $(this).attr("data");
+        var on = 'False';
+        if($(this).prop('checked')) on = 'True';
+        $.get('update', { pk: id, isOn: on });
+    });
 });
 
 </script>
@@ -34,9 +33,6 @@ $(document).ready(function() {
   </tr>
 {% endfor %}
 </table>
-
-<a href="javascript:myFunction();">Click here</a>
-
 <hr/>
 Add new To Do:
 

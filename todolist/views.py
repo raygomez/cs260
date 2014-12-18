@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.shortcuts import redirect
 from todolist.models import ToDo
 
 import datetime
@@ -20,8 +20,21 @@ def index(request):
             
     return render(request, 'index.html', context)
 
-def hello(request):
-    return HttpResponse('hello')
+@login_required()
+def update(request):
+    
+    if request.method == 'GET':
+        if 'pk' in request.GET and 'isOn' in request.GET:
+            id = int(request.GET.get('pk'))
+            state = request.GET.get('isOn') == 'True'
+            todo = ToDo.objects.get(pk=id, user=request.user)
+            todo.isDone = state
+            todo.save()
+        else: HttpResponseRedirect('index')
+    else: HttpResponseRedirect('index')
+    
+    return HttpResponse()
+
 
 @login_required()
 def add(request):
