@@ -1,13 +1,14 @@
-from django.shortcuts import render
-from todolist.models import ToDo
-from django.contrib.auth.decorators import user_passes_test
 
 import datetime
 from django.contrib.auth.decorators import login_required
-from todolist.forms.AddToDoForm import AddToDoForm
 from django.http.response import HttpResponseRedirect
-from django.http.response import HttpResponse
+from django.contrib.auth.models import User
+from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
+
 from todolist.forms.AddUserForm import AddUserForm
+from todolist.forms.AddToDoForm import AddToDoForm
+from todolist.models import ToDo
 
 
 @login_required()
@@ -52,9 +53,15 @@ def isAdmin(user):
 
 @user_passes_test(isAdmin)
 def addUser(request):
-    
-    form = AddUserForm()
+    if request.method == "POST":
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            new_user.first_name = request.POST.get('first_name')
+            new_user.last_name = request.POST.get('last_name')
+            new_user.save()
+            return HttpResponseRedirect('index')
+    else:
+        form = AddUserForm() 
 
-    context = { 'form' : form}
-            
-    return render(request, 'addUser.html', context)
+    return render(request, 'adduser.html', {'form': form})
