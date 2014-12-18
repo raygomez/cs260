@@ -1,11 +1,16 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from todolist.models import ToDo
+from django.contrib.auth.models import User
 
 import datetime
 
 class TodoListView(TestCase):
 
+    def setUp(self):
+        User.objects.create_user("user", "user@user.com", "user")
+        self.client.login(username="user", password="user")
+        
     def test_shows_no_todo_index(self):
         resp = self.client.get(reverse('todolist:index'))
         dateToday = datetime.date.today()    
