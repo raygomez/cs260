@@ -24,7 +24,7 @@ def add(request):
     if request.method == 'POST':
         form = AddToDoForm(request.POST)
         if form.is_valid():
-            form.save(commit=False);
-            form.user = request.user
-            form.save()
+            todo = form.save(commit=False);
+            todo.user = request.user
+            todo.save()
     return HttpResponseRedirect('index')
