@@ -6,6 +6,8 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from todolist.forms.AddToDoForm import AddToDoForm
 from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponse
+
 
 @login_required()
 def index(request):
@@ -17,6 +19,9 @@ def index(request):
                'todos' : todos, 'form' : form}
             
     return render(request, 'index.html', context)
+
+def hello(request):
+    return HttpResponse('hello')
 
 @login_required()
 def add(request):
