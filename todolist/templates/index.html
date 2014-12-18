@@ -11,7 +11,7 @@
 {% for todo in todos %}
   <tr>
     <td>{{ todo.description }}</td>
-    <td><input type='checkbox' {% if todo.isDone %}checked{% endif %}  }}></input></td>
+    <td><input id=checkBox{{ todo.pk }} type='checkbox' {% if todo.isDone %}checked{% endif %}></input></td>
   </tr>
 {% endfor %}
 </table>
