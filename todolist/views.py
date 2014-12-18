@@ -28,5 +28,5 @@ def add(request):
         form = AddToDoForm(request.POST)
         if form.is_valid():
             form.save();
-            
+    
     return HttpResponseRedirect('index')
