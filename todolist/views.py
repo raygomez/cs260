@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
 from todolist.models import ToDo
+from django.contrib.auth.decorators import user_passes_test
 
 import datetime
 from django.contrib.auth.decorators import login_required
@@ -30,11 +30,9 @@ def update(request):
             todo = ToDo.objects.get(pk=id, user=request.user)
             todo.isDone = state
             todo.save()
-        else: HttpResponseRedirect('index')
-    else: HttpResponseRedirect('index')
+        else: return HttpResponseRedirect('index')
+    else: return HttpResponseRedirect('index')
     
-    return HttpResponse()
-
 
 @login_required()
 def add(request):
@@ -46,3 +44,11 @@ def add(request):
             todo.user = request.user
             todo.save()
     return HttpResponseRedirect('index')
+
+
+def isAdmin(user):
+    return user.is_staff
+
+@user_passes_test(isAdmin)
+def addUser(request):
+    return HttpResponse()
