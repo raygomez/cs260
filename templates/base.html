@@ -1,19 +1,8 @@
 <html>
 <head>
-<title>My Page</title>
-<script language="javascript" type="text/javascript">
+{% block script %}
+{% endblock %}
 
-$.ajax({
-    url: '127.0.0.1:8000/todolist/hello',
-    type: 'get',
-    success: function(data) {
-        alert(data);
-    },
-    failure: function(data) { 
-        alert('error');
-    }
-});
-</script>
 {% load staticfiles %}
 <script src="{% static "js/jquery.js" %}"></script>
 </head>
