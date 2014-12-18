@@ -5,6 +5,7 @@ from todolist.models import ToDo
 import datetime
 from django.contrib.auth.decorators import login_required
 from todolist.forms.AddToDoForm import AddToDoForm
+from django.http.response import HttpResponseRedirect
 
 @login_required()
 def index(request):
@@ -20,3 +21,12 @@ def index(request):
             
     return render(request, 'index.html', context)
 
+@login_required()
+def add(request):
+    
+    if request.method == 'POST':
+        form = AddToDoForm(request.POST)
+        if form.is_valid():
+            pass
+            
+    return HttpResponseRedirect('index')
