@@ -15,8 +15,8 @@ from todolist.models import ToDo
 @login_required()
 def index(request):
     dateToday = datetime.date.today()
-    todos = ToDo.objects.filter(Q(user=request.user), Q(dateAdded=dateToday)
-                                | Q(isDone=False))
+    todos = ToDo.objects.filter(Q(user=request.user), (Q(dateAdded=dateToday)
+                                | Q(isDone=False)))
     form = AddToDoForm()
 
     context = {'dateToday' : dateToday.strftime('%b %d, %Y'),
