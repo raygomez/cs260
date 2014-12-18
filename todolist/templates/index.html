@@ -2,6 +2,18 @@
 
 {% block script %}
 
+<script>
+
+$(document).ready(function() {
+    $(':checkbox').change(function(){
+    var id = $(this).attr("data"); 
+    var state = $(this).checked;
+     $.get('update', {pk: id}, function(data){
+            alert('hi');
+           });});
+});
+
+</script>
 
 {% endblock %}
 
@@ -17,7 +29,7 @@
 {% for todo in todos %}
   <tr>
     <td>{{ todo.description }}</td>
-    <td><input id=checkBox{{ todo.pk }} type='checkbox' {% if todo.isDone %}checked{% endif %}></input></td>
+    <td><input id=checkBox{{ todo.pk }} data={{ todo.pk }} type='checkbox' {% if todo.isDone %}checked{% endif %}></input></td>
   </tr>
 {% endfor %}
 </table>
