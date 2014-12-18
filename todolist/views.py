@@ -5,6 +5,7 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
+from django.db.models import Q
 
 from todolist.forms.AddUserForm import AddUserForm
 from todolist.forms.AddToDoForm import AddToDoForm
@@ -14,7 +15,8 @@ from todolist.models import ToDo
 @login_required()
 def index(request):
     dateToday = datetime.date.today()
-    todos = ToDo.objects.filter(dateAdded=dateToday, user=request.user)
+    todos = ToDo.objects.filter(Q(user=request.user), Q(dateAdded=dateToday)
+                                | Q(isDone=False))
     form = AddToDoForm()
 
     context = {'dateToday' : dateToday.strftime('%b %d, %Y'),
