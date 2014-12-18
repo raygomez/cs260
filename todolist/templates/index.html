@@ -6,9 +6,10 @@
 
 $(document).ready(function() {
     $(':checkbox').change(function(){
-    var id = $(this).attr("data"); 
-    var state = $(this).checked;
-     $.get('update', {pk: id}, function(data){
+    var id = $(this).attr("data");
+    var on = 'False';
+    if($(this).checked) on = 'True';
+     $.get('update', { pk: id, isOn: on }, function(data){
             alert('hi');
            });});
 });
