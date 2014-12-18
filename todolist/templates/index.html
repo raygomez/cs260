@@ -43,4 +43,9 @@ Add new To Do:
     <input type="submit" value="Submit" />
 </form>
 
+{% if user.is_staff %}
+<hr/>
+ <a href="adduser">Create a new user</a>
+{% endif %}
+
 {% endblock %}
