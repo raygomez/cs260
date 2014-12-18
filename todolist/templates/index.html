@@ -5,8 +5,10 @@
 <h2>{{ dateToday }}</h2>
 <hr/>
 {% for todo in todos %}
+
 <p>{{ todo.description }}</p>
-<p>{{ todo.isDone }}</p>
+<p><input type='checkbox' {% if todo.isDone %}checked{% endif %}  }}></input></p>
+
 <hr/>
 {% endfor %}
 

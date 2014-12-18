@@ -10,11 +10,8 @@ from django.http.response import HttpResponseRedirect
 @login_required()
 def index(request):
     dateToday = datetime.date.today()
-    todos = ToDo.objects.filter(dateAdded=dateToday)
-    
-    if request.method == 'GET':
-        form = AddToDoForm()
-
+    todos = ToDo.objects.filter(dateAdded=dateToday, user=request.user)
+    form = AddToDoForm()
 
     context = {'dateToday' : dateToday.strftime('%b %d, %Y'),
                'todos' : todos, 'form' : form}
