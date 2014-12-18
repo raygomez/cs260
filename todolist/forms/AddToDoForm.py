@@ -4,4 +4,4 @@ from todolist.models import ToDo
 class AddToDoForm(ModelForm):
     class Meta:
         model = ToDo
-        
+        exclude = ['isDone', 'dateAdded']
