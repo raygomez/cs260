@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from todolist.forms.AddToDoForm import AddToDoForm
 from django.http.response import HttpResponseRedirect
 from django.http.response import HttpResponse
+from todolist.forms.AddUserForm import AddUserForm
 
 
 @login_required()
@@ -51,4 +52,9 @@ def isAdmin(user):
 
 @user_passes_test(isAdmin)
 def addUser(request):
-    return HttpResponse()
+    
+    form = AddUserForm()
+
+    context = { 'form' : form}
+            
+    return render(request, 'addUser.html', context)
